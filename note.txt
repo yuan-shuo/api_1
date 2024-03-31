@@ -1,1 +1,4 @@
 conda activate houduan
+
+python manage.py makemigrations
+python manage.py migrate

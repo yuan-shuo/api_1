@@ -77,9 +77,18 @@ WSGI_APPLICATION = "apiTrain.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        # 代表使用MySQL数据库
+        'ENGINE': 'django.db.backends.mysql',
+        # 数据库名字
+        'NAME':'p_bd',
+        'USER': 'root',
+        # 数据库密码
+        'PASSWORD': '',
+        # 哪台主机
+        'HOST': '127.0.0.1',
+        # 端口
+        'PORT': '3306',
     }
 }
 
