@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    # 跨域1：pip install django-cors-headers
+    'corsheaders',
+
     # my apps
     "myApi.apps.MyapiConfig",
 ]
@@ -45,11 +48,22 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+
+    # 跨域2：在'django.middleware.common.CommonMiddleware',之前
+    'corsheaders.middleware.CorsMiddleware',
+
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+# 跨域3：下面这段自己添加
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",  # 允许访问的域名和端口
+    "http://127.0.0.1:8080",
+    "https://yuan-shuo.github.io",
 ]
 
 ROOT_URLCONF = "apiTrain.urls"
