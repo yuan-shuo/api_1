@@ -27,18 +27,17 @@ def leaveWord(request):
                            message_content=data["content"],
                            author_name=data["name"])
         return HttpResponse("Ok!")
-        # print(data['title'])
-        
-        # title = request.POST.get('title', '')  # 获取标题
-        # content = request.POST.get('content', '')  # 获取留言内容
-        # name = request.POST.get('name', '')  # 获取留言人的名字
-        
-        # data = {
-        #     "title": "调试用标题",
-        #     "message_content": "调试用内容",
-        #     "author_name": "调试用名字"
-        # }
-        # textDic.objects.create(title=data["title"],
-        #                        message_content=data["message_content"],
-        #                        author_name=data["author_name"])
+    
+def getWord(request):
+    if request.method == 'GET':
+        # 获取所有 textDic 对象的 title、date 和 message_content 属性
+        data = textDic.objects.select_related().values('title', 'date', 'message_content')
+
+        # 将结果转换为列表
+        data_list = list(data)
+
+        print("Data List:", data_list)
+        # return HttpResponse("Ok!")
+        return JsonResponse(data_list, safe=False)
+    return HttpResponse("not GET")
         
